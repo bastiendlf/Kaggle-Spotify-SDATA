@@ -5,12 +5,12 @@ from sklearn.preprocessing import scale
 import numpy as np
 
 def preprocess_data(df, features_columns, label = None, z_score = False, standardize = False) :
-    print("--------------------------------")
+    print("------------------------------------------")
     print("Preprocessing data")
-    print("--------------------------------")
+    print("------------------------------------------")
     print("Get dataset")
     print("Shape of the data to process : " + str(df.shape))
-    print("--------------------------------")
+    print("------------------------------------------")
 
     #Create inputs and labels
     #label
@@ -39,8 +39,8 @@ def preprocess_data(df, features_columns, label = None, z_score = False, standar
         df = scale(df, axis=0, with_mean=True, with_std=True)
         df = pd.DataFrame(df, columns=features_columns)
 
-    print("--------------------------------")
-    print("Dataset shape after preprocessing : " + str(df.shape))
+    print("------------------------------------------")
+    print("Data shape after preprocessing : " + str(df.shape))
     if label != None : print("Labels shape : " + str(df_labels.shape))
 
     print("Return dataset(s) ...")
