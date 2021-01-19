@@ -6,7 +6,7 @@ import numpy as np
 
 def preprocess_data(df, features_columns, label = None, z_score = False, standardize = False) :
     print("------------------------------------------")
-    print("Preprocessing data")
+    print("            Preprocessing data            ")
     print("------------------------------------------")
     print("Get dataset")
     print("Shape of the data to process : " + str(df.shape))
@@ -45,6 +45,8 @@ def preprocess_data(df, features_columns, label = None, z_score = False, standar
 
     print("Return dataset(s) ...")
     print("Preprocessing finished")
+    print("------------------------------------------")
+
 
     if label != None :
         res = (df, df_labels)
