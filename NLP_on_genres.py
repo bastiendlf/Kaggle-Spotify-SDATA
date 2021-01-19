@@ -42,8 +42,8 @@ def transform_genres(df, target="popularity"):
     # and it raises an Exception so we drop the line to avoid issues
     df = df[df.genres != '[]']
 
-    columns = df.columns.values
-    features = np.delete(columns, np.argwhere(columns == target))
+    # columns = df.columns.values
+    # features = np.delete(columns, np.argwhere(columns == target))
 
     genres = np.array(df.genres)
 
@@ -76,8 +76,9 @@ def transform_genres(df, target="popularity"):
     df_genres.insert(0, "genres", genres)
 
     # Merging the original datafram and the new one created
+
     df_final = df.merge(df_genres, on="genres", how='inner')
 
-    # df_final = df_final.drop("genres", axis=1)
+    # df_final = df_final.drop('genres', axis=1)
 
     return df_final
