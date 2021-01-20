@@ -54,7 +54,7 @@ def preprocess_data(df, features_columns, label=None, z_score=False, standardize
     print("------------------------------------------")
 
     if label is not None:
-        pd.DataFrame(df_labels, columns=["genre"])
+        df_labels = pd.DataFrame(df_labels, columns=["genre"])
         res = (df, df_labels)
     else:
         res = df
