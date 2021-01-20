@@ -4,6 +4,9 @@ from scipy.stats import zscore
 from sklearn.preprocessing import scale
 import numpy as np
 
+import warnings
+warnings.filterwarnings("ignore")
+
 
 def preprocess_data(df, features_columns, label=None, z_score=False, standardize=False):
     print("------------------------------------------")
@@ -59,7 +62,7 @@ def preprocess_data(df, features_columns, label=None, z_score=False, standardize
     return res
 
 
-def preprocess_data_exo2(df, features_columns, df_keep, z_score=False, standardize=False):
+def preprocess_data_exo2(df, features_columns, z_score=False, standardize=False):
     print("------------------------------------------")
     print("            Preprocessing data exo2           ")
     print("------------------------------------------")
@@ -70,7 +73,7 @@ def preprocess_data_exo2(df, features_columns, df_keep, z_score=False, standardi
     # inputs
     print("Extract inputs ...")
     df_features = df[features_columns]
-    print("Shape of the data to process : " + str(df_features.shape))
+    print("Shape of the data to process : " + str(df.shape))
     # Remove outliers
     if z_score:
         print("Remove outliers with zscore ...")
@@ -79,8 +82,7 @@ def preprocess_data_exo2(df, features_columns, df_keep, z_score=False, standardi
         filtered_entries = (abs_z_scores < 4).all(axis=1)
 
         # Keeping non-outliers elements
-        df_features = df_features[filtered_entries]
-        df_keep = df_keep[filtered_entries]
+        df = df[filtered_entries]
 
     # Strandardize : center reduce
     if standardize:
@@ -88,11 +90,13 @@ def preprocess_data_exo2(df, features_columns, df_keep, z_score=False, standardi
         features_matrix = scale(df_features, axis=0, with_mean=True, with_std=True)
         df_features = pd.DataFrame(features_matrix, columns=features_columns)
 
+        df.loc[:, features_columns] = df_features
+
     print("------------------------------------------")
-    print("Data shape after preprocessing : " + str(df_features.shape))
+    print("Data shape after preprocessing : " + str(df.shape))
 
     print("Return dataset(s) ...")
     print("Preprocessing finished")
     print("------------------------------------------")
 
-    return df_features, df_keep
+    return df

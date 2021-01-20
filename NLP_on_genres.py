@@ -28,15 +28,15 @@ def getKeysByValue(dictOfElements, valueToFind):
     return listOfKeys
 
 
-def transform_genres(df, target="popularity"):
+def transform_genres(df, remove_genres_column=False):
     """
     TODO
     :param df:
-    :param target:
+    :param remove_genres_column:
     :return:
     """
     if is_there_nan_values(df):
-        raise Exception("Sorry, please remove NaN values before transforming Dataframe")
+        raise Exception("Sorry, please remove NaN values before transforming Dataframe.")
 
     # We have to remove this genre string '[]' because the string encoder considers it as an empty array
     # and it raises an Exception so we drop the line to avoid issues
@@ -79,6 +79,7 @@ def transform_genres(df, target="popularity"):
 
     df_final = df.merge(df_genres, on="genres", how='inner')
 
-    # df_final = df_final.drop('genres', axis=1)
+    if remove_genres_column:
+        df_final = df_final.drop('genres', axis=1)
 
     return df_final
