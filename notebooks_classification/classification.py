@@ -3,7 +3,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 
 
-def compute_classifier(x_train, y_train, model, target_names):
+def compute_classifier(x_train, y_train, model):
     # create kfold
     kfold = KFold(n_splits=10, random_state=18, shuffle=True)
 
@@ -12,7 +12,6 @@ def compute_classifier(x_train, y_train, model, target_names):
 
     # Compute metrics
     accuracy = accuracy_score(y_train, y_pred)
-    print("Accuracy : " + str(accuracy)+"\n")
-    print(classification_report(y_train, y_pred, target_names=target_names))
-
+    print("Accuracy : " + str(accuracy))
     return y_pred
+
