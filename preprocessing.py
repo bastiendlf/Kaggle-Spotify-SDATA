@@ -5,7 +5,14 @@ from sklearn.preprocessing import scale
 import numpy as np
 
 import warnings
+
 warnings.filterwarnings("ignore")
+
+
+def encode_label(df):
+    print("Encode labels ...")
+    le = LabelEncoder()
+    return le.fit_transform(df)
 
 
 def preprocess_data(df, features_columns, label=None, z_score=False, standardize=False):
@@ -21,9 +28,6 @@ def preprocess_data(df, features_columns, label=None, z_score=False, standardize
     if label is not None:
         print("Extract labels ...")
         df_labels = df['genre']
-        print("Encode labels ...")
-        le = LabelEncoder()
-        df_labels = le.fit_transform(df_labels)
 
     # inputs
     print("Extract inputs ...")
