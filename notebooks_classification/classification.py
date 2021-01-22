@@ -15,3 +15,4 @@ def compute_classifier(x_train, y_train, model):
     print("Accuracy : " + str(accuracy))
     return y_pred
 
+
